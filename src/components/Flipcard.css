@@ -1,0 +1,41 @@
+/* src/FlipCard.css */
+.flip-card-container {
+  perspective: 1000px;  /* Adds depth for 3D effect */
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;  /* Center it on the page */
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;  /* Maintain 3D space */
+  transition: transform 0.6s;  /* Smooth transition for flipping */
+  cursor: pointer;  /* Indicate it's clickable */
+}
+
+.flip-card.is-flipped {
+  transform: rotateY(180deg);  /* Flip to the back */
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;  /* Hide the back when front is visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  background: #fff;  /* Front background */
+  border-radius: 8px;  /* Rounded corners for a modern look */
+}
+
+.flip-card-back {
+  background: #e6f7ff;  /* Back background for distinction */
+  transform: rotateY(180deg);  /* Back is initially flipped */
+  flex-direction: column;  /* Stack content vertically */
+  padding: 10px;
+  box-sizing: border-box;  /* Include padding in width/height */
+}
