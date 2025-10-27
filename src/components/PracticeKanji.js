@@ -4,6 +4,9 @@ import FlipCard from './FlipCard';
 import getKanjiList from '../services/api';
 import './PracticeKanji.css';
 
+const REACT_APP_API_URL="https://kanji-flash-backend-v2.onrender.com";
+
+
 function PracticeKanji() {
   const [kanjiList, setKanjiList] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,10 +18,10 @@ function PracticeKanji() {
   const cached = localStorage.getItem('kanjiList');
 
   if (cached) {
-    // ✅ If we already have data saved locally, use it
+    //If we already have data saved locally, use it
     setKanjiList(JSON.parse(cached));
     setLoading(false);
-    return; // 🔁 Skip the network request
+    return; // Skip the network request
   }
 
   // Otherwise fetch from API
@@ -45,15 +48,9 @@ function PracticeKanji() {
   const handleSaveKanji = async () => {
     const currentKanji = kanjiList[currentIndex];
     
-    // Get token from context or localStorage as fallback
+    // Getting token from context or localStorage as fallback
     const authToken = token || localStorage.getItem('token');
     
-    // console.log('=== DEBUG SAVE KANJI ===');
-    // console.log('Token from context:', token);
-    // console.log('Token from localStorage:', localStorage.getItem('token'));
-    // console.log('Using token:', authToken);
-    // console.log('Current Kanji:', currentKanji);
-
     if (!authToken) {
       setSaveMessage('❌ Not authenticated. Please log in again.');
       setTimeout(() => setSaveMessage(''), 3000);
@@ -61,7 +58,7 @@ function PracticeKanji() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/saved-kanji', {
+      const response = await fetch(`${REACT_APP_API_URL}/api/saved-kanji`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

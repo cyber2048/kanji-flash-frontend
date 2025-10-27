@@ -3,6 +3,9 @@ import { AuthContext } from '../context/AuthContext';
 import FlipCard from './FlipCard';
 import './SavedKanji.css';
 
+const REACT_APP_API_URL="https://kanji-flash-backend-v2.onrender.com";
+
+
 function SavedKanji() {
   const [savedKanji, setSavedKanji] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,7 +18,7 @@ function SavedKanji() {
 
   const fetchSavedKanji = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/saved-kanji', {
+      const response = await fetch(`${REACT_APP_API_URL}/api/saved-kanji`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -33,7 +36,7 @@ function SavedKanji() {
     if (!window.confirm('Remove this kanji from saved list?')) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/saved-kanji/${id}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/api/saved-kanji/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
