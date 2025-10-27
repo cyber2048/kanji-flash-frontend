@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+const REACT_APP_API_URL="https://kanji-flash-backend-v2.onrender.com";
 
 export const AuthContext = createContext();
 
@@ -15,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       if (storedToken) {
         try {
           // Verify token with backend
-          const response = await fetch('http://localhost:5000/api/auth/verify', {
+          const response = await fetch('{REACT_APP_API_URL}/api/auth/verify', {
             headers: {
               'Authorization': `Bearer ${storedToken}`
             }
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('{REACT_APP_API_URL}/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
@@ -68,7 +69,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('{REACT_APP_API_URL}/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)
