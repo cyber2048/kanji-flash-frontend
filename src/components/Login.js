@@ -50,6 +50,7 @@ function Login() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
+              autocomplete="email"
               required
             />
           </div>
@@ -60,6 +61,7 @@ function Login() {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              autocomplete="current-password"
               required
             />
           </div>
