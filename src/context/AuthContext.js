@@ -76,14 +76,18 @@ export const AuthProvider = ({ children }) => {
       });
       const data = await response.json();
       
-      if (data.success) {
+      if (response.ok && data.success) {
         localStorage.setItem('token', data.token);
         setToken(data.token);
         setUser(data.user);
         return { success: true };
       }
-      return { success: false, message: data.message || 'Login failed' };
+      else {
+      //return actual backend message if present
+      return { success: false, message: data.message || 'Invalid credentials' };
+    }
     } catch (error) {
+      console.log('Login error:',error);
       return { success: false, message: 'Server error. Please try again.' };
     }
   };
