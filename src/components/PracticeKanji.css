@@ -48,6 +48,8 @@
   gap: 15px;
   margin-top: 30px;
   flex-wrap: wrap;
+  margin: 20%
+  ;
 }
 
 .nav-btn, .save-btn {

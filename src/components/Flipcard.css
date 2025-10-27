@@ -30,6 +30,7 @@
   border: 1px solid #ccc;
   background: #fff;  /* Front background */
   border-radius: 8px;  /* Rounded corners for a modern look */
+  margin: 20px;
 }
 
 .flip-card-back {
@@ -38,4 +39,6 @@
   flex-direction: column;  /* Stack content vertically */
   padding: 10px;
   box-sizing: border-box;  /* Include padding in width/height */
+  margin: 20px;
+
 }

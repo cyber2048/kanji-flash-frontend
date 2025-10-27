@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Base URL for your backend API (update if your server is on a different port or domain)
-const API_BASE_URL = 'http://localhost:5000';
+// Base URL 
+const API_BASE_URL = 'https://kanji-flash-backend-v2.onrender.com';
 
 export const getKanjiList = async () => {
   try {

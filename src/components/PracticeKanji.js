@@ -12,19 +12,35 @@ function PracticeKanji() {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("Fetching kanji list...");
-        const data = await getKanjiList();
-        setKanjiList(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const cached = localStorage.getItem('kanjiList');
+
+  if (cached) {
+    // ✅ If we already have data saved locally, use it
+    setKanjiList(JSON.parse(cached));
+    setLoading(false);
+    return; // 🔁 Skip the network request
+  }
+
+  // Otherwise fetch from API
+  const fetchData = async () => {
+    try {
+      console.log("Fetching kanji list from server...");
+      const data = await getKanjiList();
+
+      // ✅ Save a copy in localStorage for next time
+      localStorage.setItem('kanjiList', JSON.stringify(data));
+
+      setKanjiList(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
   const handleSaveKanji = async () => {
     const currentKanji = kanjiList[currentIndex];
@@ -55,7 +71,10 @@ function PracticeKanji() {
           kanjiId: currentKanji.id,
           kanji: currentKanji.kanji,
           meaning: currentKanji.meaning,
-          hint: currentKanji.hint
+          hint: currentKanji.hint,
+          romaji:currentKanji.romaji,
+          kana:currentKanji.kana,
+          jlpt_level:currentKanji.jlpt_level
         })
       });
 
@@ -92,6 +111,9 @@ function PracticeKanji() {
         kanji={currentKanji.kanji} 
         meaning={currentKanji.meaning} 
         hint={currentKanji.hint} 
+        romaji={currentKanji.romaji}
+        kana={currentKanji.kana}
+        jlpt_level={currentKanji.jlpt_level}
       />
 
       {saveMessage && (

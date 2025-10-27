@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './Flipcard.css';  // You'll create this CSS file next
 
-function FlipCard({ kanji, meaning, hint }) {
+function FlipCard({ kanji, meaning, hint, romaji, kana, jlpt_level }) {
   const [isFlipped, setIsFlipped] = useState(false);  // State to track if the card is flipped
 
   return (
@@ -20,10 +20,14 @@ function FlipCard({ kanji, meaning, hint }) {
         <div className="flip-card-back">
           <h3>Meaning: {meaning}</h3>
           <p>Hint: {hint}</p>
+          <p>Romaji: {romaji}</p>
+          <p>kana: {kana}</p>
+          <p>JLPT Level: {jlpt_level}</p>
+
         </div>
       </div>
     </div>
   );
 }
 
-export default FlipCard;
+export default React.memo(FlipCard);

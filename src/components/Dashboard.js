@@ -19,7 +19,7 @@ function Dashboard() {
     <div className="dashboard-container">
       {/* Header */}
       <header className="dashboard-header">
-        <h1>KanjiFlash Dashboard</h1>
+        <h1>KANJI-WADA : Your Japanese learning aid</h1>
         <div className="user-info">
           <span>Welcome, {user?.username}!</span>
           <span>Day {} of streak!</span>
@@ -44,10 +44,14 @@ function Dashboard() {
       </div>
 
       {/* Tab Content */}
-      <div className="tab-content">
-        {activeTab === 'practice' && <PracticeKanji />}
-        {activeTab === 'saved' && <SavedKanji />}
-      </div>
+ <div className="tab-content">
+  <div style={{ display: activeTab === 'practice' ? 'block' : 'none' }}>
+    <PracticeKanji />
+  </div>
+  <div style={{ display: activeTab === 'saved' ? 'block' : 'none' }}>
+    <SavedKanji />
+  </div>
+</div>
     </div>
   );
 }

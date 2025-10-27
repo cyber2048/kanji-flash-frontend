@@ -73,6 +73,9 @@ function SavedKanji() {
         kanji={currentKanji.kanji} 
         meaning={currentKanji.meaning} 
         hint={currentKanji.hint} 
+        romaji={currentKanji.romaji}
+        kana={currentKanji.kana}
+        jlpt_level={currentKanji.jlpt_level}
       />
 
       <div className="control-buttons">
@@ -88,7 +91,7 @@ function SavedKanji() {
           onClick={() => handleRemove(currentKanji._id)}
           className="remove-btn"
         >
-          🗑️ Remove
+           Remove
         </button>
 
         <button 

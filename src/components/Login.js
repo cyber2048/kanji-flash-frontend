@@ -40,7 +40,7 @@ function Login() {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h2>Login to KanjiFlash</h2>
+        <h2>Login to KANJI-WADA : Your Japanese Learning Aid</h2>
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
