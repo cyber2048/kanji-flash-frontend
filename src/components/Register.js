@@ -5,7 +5,7 @@ import './Auth.css';
 
 function Register() {
   const [formData, setFormData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: ''
   });
@@ -47,10 +47,10 @@ function Register() {
           <div className="form-group">
             <input
               type="text"
-              name="username"
-              placeholder="Username"
-              autoComplete="username"
-              value={formData.username}
+              name="name"
+              placeholder="name"
+              autoComplete="name"
+              value={formData.name}
               onChange={handleChange}
               required
             />
